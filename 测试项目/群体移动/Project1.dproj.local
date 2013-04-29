@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2010-04-04 23:09:14.140.pas,D:\文档\RAD Studio\Projects\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas</Transaction>
+    <Transaction>2010-04-04 23:09:14.140.dfm,D:\文档\RAD Studio\Projects\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm</Transaction>
+    <Transaction>2010-04-04 23:09:15.765.dproj,D:\文档\RAD Studio\Projects\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj</Transaction>
+    <Transaction>2010-04-11 16:22:48.312.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit2.pas=D:\文档\RAD Studio\Projects\Delphi\Temp\UnitTMyPicture.pas</Transaction>
+    <Transaction>2010-04-11 16:23:29.156.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit2.pas=D:\文档\RAD Studio\Projects\Delphi\Temp\UnitCommon.pas</Transaction>
+    <Transaction>2010-04-11 16:36:27.656.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitMain.pas</Transaction>
+    <Transaction>2010-04-11 16:36:27.656.dfm,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitMain.dfm</Transaction>
+    <Transaction>2010-04-11 16:36:38.515.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\UnitCommon.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitCommon.pas</Transaction>
+    <Transaction>2010-04-11 16:36:47.687.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\UnitTMyPicture.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitTMyPicture.pas</Transaction>
+    <Transaction>2010-04-11 16:36:55.281.dproj,D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\Project1.dproj</Transaction>
+    <Transaction>2010-04-20 00:05:52.546.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitMain.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\群体移动\UnitMain.pas</Transaction>
+    <Transaction>2010-04-20 00:05:52.546.dfm,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\UnitMain.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\群体移动\UnitMain.dfm</Transaction>
+    <Transaction>2010-04-20 00:05:56.765.dproj,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\群体移动\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
