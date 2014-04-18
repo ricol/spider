@@ -45,8 +45,7 @@ type
     Label13: TLabel;
     Label14: TLabel;
     procedure BtnOkClick(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public

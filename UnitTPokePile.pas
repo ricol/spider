@@ -6,10 +6,10 @@ uses
   Messages, Windows, SysUtils, Graphics, UnitCommon, UnitTPanelPoke;
 
 type
-  //this class represents the card pile including MAIN, TEMP and RECYCLE cards.
+  // this class represents the card pile including MAIN, TEMP and RECYCLE cards.
   TPokePile = class
   private
-    FPoke: array[1..MAXPOKE] of TPanelPoke;
+    FPoke: array [1 .. MAXPOKE] of TPanelPoke;
     FFIndex: integer;
     FPileNumber: integer;
     FHandle: cardinal;
@@ -50,16 +50,18 @@ begin
     FPoke[FFIndex].PositiveNumber := 0;
     FPoke[FFIndex].CanMoveAsGroup := false;
     FPoke[FFIndex].BringToFront;
-  end else if FType = TEMP then
+  end
+  else if FType = TEMP then
   begin
     inc(FFIndex);
     FPoke[FFIndex] := tmpPoke;
     FPoke[FFIndex].PileNumber := FPileNumber;
     FPoke[FFIndex].Number := FIndex;
-    Fpoke[FFIndex].BringToFront;
-  end else if FType = RECYCLE then
+    FPoke[FFIndex].BringToFront;
+  end
+  else if FType = RECYCLE then
   begin
-    inc(FFindex);
+    inc(FFIndex);
     FPoke[FFIndex] := tmpPoke;
     FPoke[FFIndex].PileNumber := FPileNumber;
     FPoke[FFIndex].Number := FIndex;
@@ -79,7 +81,8 @@ begin
     begin
       FPoke[i].PositiveNumber := num;
       inc(num);
-    end else
+    end
+    else
       FPoke[i].PositiveNumber := 0;
   end;
 end;
@@ -130,7 +133,8 @@ begin
     dec(FFIndex);
     if FFIndex > 0 then
       FPoke[FFIndex].Reverse(true);
-  end else if FType = TEMP then
+  end
+  else if FType = TEMP then
   begin
     FPoke[FFIndex] := nil;
     dec(FFIndex);

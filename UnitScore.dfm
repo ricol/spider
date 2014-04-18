@@ -102,6 +102,10 @@ object FormScore: TFormScore
     object TabSheet2: TTabSheet
       Caption = #20013#32423
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox10: TGroupBox
         Left = 12
         Top = 0
@@ -179,6 +183,10 @@ object FormScore: TFormScore
     object TabSheet3: TTabSheet
       Caption = #39640#32423
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox4: TGroupBox
         Left = 12
         Top = 0

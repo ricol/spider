@@ -1,7 +1,7 @@
 unit UnitMain;
 
 {
-CONTACT: WANGXINGHE1983@GMAIL.COM
+  CONTACT: WANGXINGHE1983@GMAIL.COM
 }
 
 interface
@@ -51,8 +51,7 @@ type
     procedure MenuGameOptionClick(Sender: TObject);
     procedure MenuGameStartClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormResize(Sender: TObject);
     procedure MenuContinueClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -83,20 +82,22 @@ var
 
 implementation
 
-uses UnitAbout, UnitDifficulty, UnitScore, UnitOption, UnitGameOver, UnitTColorLabel;
+uses UnitAbout, UnitDifficulty, UnitScore, UnitOption, UnitGameOver,
+  UnitTColorLabel;
 
 {$R *.dfm}
 
 var
-  GPokePile: array[1..MAXMAIN] of TPokePile;
-  GPokePileTemp: array[1..MAXTEMP] of TPokePile;
-  GPokePileRecycle: array[1..MAXRECYCLE] of TPokePile;
-  GPokeHint: array[1..MAXHINT] of THint;
+  GPokePile: array [1 .. MAXMAIN] of TPokePile;
+  GPokePileTemp: array [1 .. MAXTEMP] of TPokePile;
+  GPokePileRecycle: array [1 .. MAXRECYCLE] of TPokePile;
+  GPokeHint: array [1 .. MAXHINT] of THint;
   GGameRunning: boolean;
   GCanMoveAsGroup, GPokeMoving, GAutoMove, GAutoMoveInOrder: boolean;
-  GCanMoveAsGroupPileNumber, GCanMoveAsGroupNumber, GHintNumber, GHintNow, GRecycleNumber: integer;
+  GCanMoveAsGroupPileNumber, GCanMoveAsGroupNumber, GHintNumber, GHintNow,
+    GRecycleNumber: integer;
   GPanel: TPanel = nil;
-  GImage: TImage = nil ;
+  GImage: TImage = nil;
   GLabelOperation: TLabel = nil;
   GLabelScore: TLabel = nil;
   GColorLabel: TColorLabel = nil;
@@ -209,7 +210,8 @@ procedure TFormMain.FreeObject;
 var
   i: integer;
 begin
-  if GObjectFree then exit;
+  if GObjectFree then
+    exit;
   for i := 1 to MAXMAIN do
     try
       GPokePile[i].Free;
@@ -278,18 +280,21 @@ var
   tmpCard, tmpTargetCard, tmpOne, tmpTwo: TPanelPoke;
   i, j, k, tmpIndex: integer;
 begin
-  if not GGameRunning then exit;
+  if not GGameRunning then
+    exit;
   GHintNumber := 0;
   GHintNow := 0;
   for i := 1 to MAXMAIN do
   begin
     tmpIndex := GPokePile[i].FIndex;
     tmpOne := GPokePile[i].GetPoke(tmpIndex);
-    if tmpOne = nil then continue;
+    if tmpOne = nil then
+      continue;
     for j := tmpIndex - 1 downto 1 do
     begin
       tmpTwo := GPokePile[i].GetPoke(j);
-      if tmpTwo = nil then break;
+      if tmpTwo = nil then
+        break;
       if tmpTwo.PositiveFlag then
       begin
         if (tmpOne.Y = tmpTwo.Y) and (tmpOne.X = tmpTwo.X - 1) then
@@ -297,17 +302,23 @@ begin
           tmpOne := tmpTwo;
           continue;
         end
-        else break;
-      end else break;
+        else
+          break;
+      end
+      else
+        break;
     end;
     inc(j);
     tmpCard := GPokePile[i].GetPoke(j);
-    if tmpCard = nil then continue;
+    if tmpCard = nil then
+      continue;
     for k := 1 to MAXMAIN do
     begin
-      if i = k then continue;
+      if i = k then
+        continue;
       tmpTargetCard := GPokePile[k].GetPoke(GPokePile[k].FIndex);
-      if tmpTargetCard = nil then continue;
+      if tmpTargetCard = nil then
+        continue;
       if tmpCard.Match(tmpTargetCard) then
       begin
         inc(GHintNumber);
@@ -322,11 +333,13 @@ end;
 
 procedure TFormMain.ImageClick(Sender: TObject);
 var
-  i, SourceIndex, SourceMaxIndexNumber, SourceNumber, TargetIndex, tmpNum: integer;
+  i, SourceIndex, SourceMaxIndexNumber, SourceNumber, TargetIndex,
+    tmpNum: integer;
   tmpPoke: TPanelPoke;
   tmpOldPoint: TPoint;
 begin
-  if GImageRunning then exit;
+  if GImageRunning then
+    exit;
   GImageRunning := true;
   if not GGameRunning then
   begin
@@ -347,7 +360,8 @@ begin
     exit;
   end;
   inc(GHintNow);
-  if GHintNow > GHintNumber then GHintNow := 1;
+  if GHintNow > GHintNumber then
+    GHintNow := 1;
   SourceIndex := GPokeHint[GHintNow].SourcePileNumber;
   SourceNumber := GPokeHint[GHintNow].SourceNumber;
   SourceMaxIndexNumber := GPokeHint[GHintNow].SourceMaxIndexNumber;
@@ -383,12 +397,15 @@ begin
     end;
     tmpPoke := GPokePile[SourceIndex].GetPoke(SourceNumber);
     GetCursorPos(tmpOldPoint);
-    SetCursorPos(Self.Left + tmpPoke.Left + GMainStartX, Self.Top + tmpPoke.Top + GMainStartY + (Self.Height - Self.ClientHeight));
+    SetCursorPos(Self.Left + tmpPoke.Left + GMainStartX,
+      Self.Top + tmpPoke.Top + GMainStartY + (Self.Height - Self.ClientHeight));
     mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
     tmpPoke := GPokePile[TargetIndex].GetPoke(GPokePile[TargetIndex].FIndex);
     if tmpPoke <> nil then
     begin
-      SetCursorPos(Self.Left + tmpPoke.Left + GMainStartX, Self.Top + tmpPoke.Top + GMainStartY + (Self.Height - Self.ClientHeight));
+      SetCursorPos(Self.Left + tmpPoke.Left + GMainStartX,
+        Self.Top + tmpPoke.Top + GMainStartY +
+        (Self.Height - Self.ClientHeight));
     end;
     mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
     SetCursorPos(tmpOldPoint.X, tmpOldPoint.Y);
@@ -430,11 +447,14 @@ var
   tmpPoke, tmpTargetPoke: TPanelPoke;
   i, j: integer;
 begin
-  if not GGameRunning then exit;
-  if GPokeMoving then exit;
+  if not GGameRunning then
+    exit;
+  if GPokeMoving then
+    exit;
   for i := 1 to MAXTEMP do
   begin
-    if GPokePileTemp[i].FIndex = 0 then continue;
+    if GPokePileTemp[i].FIndex = 0 then
+      continue;
     for j := 1 to 10 do
     begin
       GPokeMoving := true;
@@ -446,7 +466,8 @@ begin
       Application.ProcessMessages;
       tmpTargetPoke := GPokePile[j].GetPoke(GPokePile[j].FIndex);
       if tmpTargetPoke <> nil then
-        tmpPoke.MoveTo(j, GPokePile[j].FIndex + 1, tmpTargetPoke.PositiveNumber + 1, MAIN)
+        tmpPoke.MoveTo(j, GPokePile[j].FIndex + 1, tmpTargetPoke.PositiveNumber
+          + 1, MAIN)
       else
         tmpPoke.MoveTo(j, 1, 1, MAIN);
       GPokePile[j].AddPoke(tmpPoke);
@@ -462,7 +483,8 @@ end;
 procedure TFormMain.MenuGameCloseClick(Sender: TObject);
 begin
   if GGameRunning then
-    if MessageBox(Self.Handle, '游戏正在进行，是否继续关闭？', '蜘蛛', MB_YESNO or MB_ICONINFORMATION or MB_DEFBUTTON2) = ID_YES then
+    if MessageBox(Self.Handle, '游戏正在进行，是否继续关闭？', '蜘蛛',
+      MB_YESNO or MB_ICONINFORMATION or MB_DEFBUTTON2) = ID_YES then
       FreeObject;
 end;
 
@@ -475,11 +497,14 @@ procedure TFormMain.MenuGameDifficultyClick(Sender: TObject);
 begin
   if GGameRunning then
   begin
-    if MessageBox(Self.Handle, '关闭该游戏之前是否保存？', '蜘蛛', MB_YESNOCANCEL or MB_ICONQUESTION) = ID_YES then
+    if MessageBox(Self.Handle, '关闭该游戏之前是否保存？', '蜘蛛', MB_YESNOCANCEL or
+      MB_ICONQUESTION) = ID_YES then
       MessageBox(Self.Handle, '保存游戏功能暂时没有实现！', '蜘蛛', MB_OK);
   end;
-  FormDifficulty.Left := Self.Left + (Self.Width div 2) - FormDifficulty.Width div 2;
-  FormDifficulty.Top := Self.Top + (Self.Height div 2) - FormDifficulty.Height div 2;
+  FormDifficulty.Left := Self.Left + (Self.Width div 2) -
+    FormDifficulty.Width div 2;
+  FormDifficulty.Top := Self.Top + (Self.Height div 2) -
+    FormDifficulty.Height div 2;
   FormDifficulty.ShowModal;
   if GNewDifficulty then
     MenuGameStartClick(Sender);
@@ -505,21 +530,25 @@ end;
 
 procedure TFormMain.MenuGameRestartClick(Sender: TObject);
 begin
-  if not GGameRunning then MenuGameStartClick(Sender)
-  else begin
-    if MessageBox(Self.Handle, '是否从头开始这次游戏？', '蜘蛛', MB_YESNO or MB_ICONINFORMATION or MB_DEFBUTTON2) = ID_YES then
+  if not GGameRunning then
+    MenuGameStartClick(Sender)
+  else
+  begin
+    if MessageBox(Self.Handle, '是否从头开始这次游戏？', '蜘蛛',
+      MB_YESNO or MB_ICONINFORMATION or MB_DEFBUTTON2) = ID_YES then
       MenuGameStartClick(Sender);
   end;
 end;
 
 procedure TFormMain.MenuGameStartClick(Sender: TObject);
 var
-  i, j: Integer;
+  i, j: integer;
   tmpPoke: TPanelPoke;
   tmpPokeArray: TPokeArray;
   tmpPokeNum: TPokeNum;
 begin
-  if GPokeMoving then exit;
+  if GPokeMoving then
+    exit;
   FreeObject;
   EndSuccessDemo;
   GPanel := TPanel.Create(Self);
@@ -577,7 +606,8 @@ begin
     begin
       tmpPokeNum := tmpPokeArray.GetPoke;
       tmpPoke := TPanelPoke.Create(Self);
-      tmpPoke.Init(tmpPokeNum.x, tmpPokeNum.y, Self.Handle, i, j, false, false, MAIN, 0, Self);
+      tmpPoke.Init(tmpPokeNum.X, tmpPokeNum.Y, Self.Handle, i, j, false, false,
+        MAIN, 0, Self);
       GPokePile[i].AddPoke(tmpPoke);
     end;
     GPokePile[i].CaculatePositiveNumber;
@@ -593,7 +623,8 @@ begin
     begin
       tmpPokeNum := tmpPokeArray.GetPoke;
       tmpPoke := TPanelPoke.Create(Self);
-      tmpPoke.Init(tmpPokeNum.x, tmpPokeNum.y, Self.Handle, i, j, false, false, MAIN, 0, Self);
+      tmpPoke.Init(tmpPokeNum.X, tmpPokeNum.Y, Self.Handle, i, j, false, false,
+        MAIN, 0, Self);
       GPokePile[i].AddPoke(tmpPoke);
     end;
     GPokePile[i].CaculatePositiveNumber;
@@ -609,7 +640,8 @@ begin
     begin
       tmpPokeNum := tmpPokeArray.GetPoke;
       tmpPoke := TPanelPoke.Create(Self);
-      tmpPoke.Init(tmpPokeNum.x, tmpPokeNum.y, Self.Handle, i, j, false, false, TEMP, 0, Self);
+      tmpPoke.Init(tmpPokeNum.X, tmpPokeNum.Y, Self.Handle, i, j, false, false,
+        TEMP, 0, Self);
       GPokePileTemp[i].AddPoke(tmpPoke);
     end;
     GPokePileTemp[i].Show;
@@ -661,7 +693,7 @@ procedure TFormMain.Process_WM_BEGINMOVE(var tmpMsg: TMessage);
 var
   tmpPileNumber, tmpNumber, tmpMax, i, tmpNum: integer;
   tmpPoke, tmpPokeUP, tmpPokeDown: TPanelPoke;
-  j: Integer;
+  j: integer;
 begin
   tmpPileNumber := tmpMsg.WParam;
   tmpNumber := tmpMsg.LParam;
@@ -672,16 +704,22 @@ begin
   for i := tmpNumber to tmpMax do
   begin
     tmpPokeUP := GPokePile[tmpPileNumber].GetPoke(i);
-    if tmpPokeUp <> nil then
+    if tmpPokeUP <> nil then
     begin
-      tmpPokeUp.CanMoveAsGroup := true;
+      tmpPokeUP.CanMoveAsGroup := true;
       tmpPokeDown := GPokePile[tmpPileNumber].GetPoke(i + 1);
       if tmpPokeDown <> nil then
       begin
-        tmpPokeDown.CanMoveAsGroup := CanMove(tmpPokeUP.X, tmpPokeUP.Y, tmpPokeDown.X, tmpPokeDown.Y);
-        if not tmpPokeDown.CanMoveAsGroup then break;
-      end else break;
-    end else break;
+        tmpPokeDown.CanMoveAsGroup := CanMove(tmpPokeUP.X, tmpPokeUP.Y,
+          tmpPokeDown.X, tmpPokeDown.Y);
+        if not tmpPokeDown.CanMoveAsGroup then
+          break;
+      end
+      else
+        break;
+    end
+    else
+      break;
   end;
   tmpNum := tmpMax - tmpNumber + 1;
   for i := tmpNumber to tmpMax do
@@ -715,12 +753,13 @@ end;
 procedure TFormMain.Process_WM_ENDMOVE(var tmpMsg: TMessage);
 var
   tmpLastPoke, tmpMovingFirstPoke, tmpPoke, tmpNextPoke: TPanelPoke;
-  tmpCenterX, tmpCenterY, tmpPileNumber, tmpNumber, i, j, k, tmpTargetPileNumber, tmpMax: integer;
+  tmpCenterX, tmpCenterY, tmpPileNumber, tmpNumber, i, j, k,
+    tmpTargetPileNumber, tmpMax: integer;
   tmpFound, tmpIsEmpty, tmpCanDelete, tmpGameOver: boolean;
   tmpPokeArray: array of TPanelPoke;
   tmpIndex, tmpTarget: integer;
 begin
-  //First, Get the center point of Moving Poke
+  // First, Get the center point of Moving Poke
   tmpPileNumber := tmpMsg.WParam;
   tmpNumber := tmpMsg.LParam;
   tmpMovingFirstPoke := GPokePile[tmpPileNumber].GetPoke(tmpNumber);
@@ -732,22 +771,27 @@ begin
   tmpTargetPileNumber := 0;
   for i := 1 to MAXMAIN do
   begin
-    if i = tmpMsg.WParam then continue;
+    if i = tmpMsg.WParam then
+      continue;
     if not GPokePile[i].IsEmpty then
     begin
       tmpLastPoke := GPokePile[i].GetPoke(GPokePile[i].FIndex);
-      if (tmpCenterX >= tmpLastPoke.Left) and (tmpCenterX <= tmpLastPoke.Left + tmpLastPoke.Width) and
-         (tmpCenterY >= tmpLastPoke.Top) and (tmpCenterY <= tmpLastPoke.Top + tmpLastPoke.Height) then
+      if (tmpCenterX >= tmpLastPoke.Left) and
+        (tmpCenterX <= tmpLastPoke.Left + tmpLastPoke.Width) and
+        (tmpCenterY >= tmpLastPoke.Top) and
+        (tmpCenterY <= tmpLastPoke.Top + tmpLastPoke.Height) then
       begin
         tmpFound := true;
         tmpIsEmpty := false;
         break;
       end;
-    end else begin
-      if (tmpCenterX >= (GPokePile[i].PileNumber - 1) * GMainLenX + GMainStartX) and
-         (tmpCenterX <= (GPokePile[i].PileNumber - 1) * GMainLenX + GMainStartX + POKEWIDTH) and
-         (tmpCenterY >= GMainStartY) and
-         (tmpCenterY <= GMainStartY + POKEHEIGHT) then
+    end
+    else
+    begin
+      if (tmpCenterX >= (GPokePile[i].PileNumber - 1) * GMainLenX + GMainStartX)
+        and (tmpCenterX <= (GPokePile[i].PileNumber - 1) * GMainLenX +
+        GMainStartX + POKEWIDTH) and (tmpCenterY >= GMainStartY) and
+        (tmpCenterY <= GMainStartY + POKEHEIGHT) then
       begin
         tmpFound := true;
         tmpTargetPileNumber := GPokePile[i].PileNumber;
@@ -756,7 +800,7 @@ begin
       end;
     end;
   end;
-  //Second, Whether the moving poke matches the target poke
+  // Second, Whether the moving poke matches the target poke
   if tmpFound then
   begin
     if not tmpIsEmpty then
@@ -780,9 +824,12 @@ begin
         GPokePile[tmpTargetPileNumber].CaculatePositiveNumber;
         GPokePile[tmpPileNumber].Show;
         GPokePile[tmpTargetPileNumber].Show;
-      end else
+      end
+      else
         GPokePile[tmpPileNumber].Show;
-    end else begin
+    end
+    else
+    begin
       j := 0;
       tmpMax := GPokePile[tmpPileNumber].FIndex;
       SetLength(tmpPokeArray, tmpMax - tmpNumber + 1);
@@ -800,7 +847,7 @@ begin
       GPokePile[tmpPileNumber].Show;
       GPokePile[tmpTargetPileNumber].Show;
     end;
-    //check whether there are some cards which can be discarded.
+    // check whether there are some cards which can be discarded.
     for i := 1 to MAXMAIN do
     begin
       tmpTarget := i;
@@ -818,12 +865,16 @@ begin
             begin
               tmpCanDelete := false;
               break;
-            end else begin
+            end
+            else
+            begin
               if tmpNextPoke.Y <> tmpPoke.Y then
               begin
                 tmpCanDelete := false;
                 break;
-              end else begin
+              end
+              else
+              begin
                 if tmpNextPoke.X <> (tmpPoke.X + 1) then
                 begin
                   tmpCanDelete := false;
@@ -833,9 +884,11 @@ begin
               tmpPoke := tmpNextPoke;
             end;
           end;
-        end else
+        end
+        else
           tmpCanDelete := false;
-      end else
+      end
+      else
       begin
         tmpCanDelete := false;
       end;
@@ -863,7 +916,7 @@ begin
         SetLength(tmpPokeArray, 0);
         GPokePile[tmpTarget].CaculatePositiveNumber;
         GPokePile[tmpTarget].Show;
-        //Check the game whether it is over
+        // Check the game whether it is over
         tmpGameOver := true;
         GPokeMoving := false;
         for k := 1 to MAXMAIN do
@@ -889,7 +942,8 @@ begin
       end;
     end;
     FindHintPoke;
-  end else
+  end
+  else
     GPokePile[tmpPileNumber].Show;
 end;
 
@@ -898,12 +952,14 @@ var
   tmpPoke: TPanelPoke;
   i, tmpMax: integer;
 begin
-  if not GCanMoveAsGroup then exit;
+  if not GCanMoveAsGroup then
+    exit;
   tmpMax := GPokePile[GCanMoveAsGroupPileNumber].FIndex;
   for i := GCanMoveAsGroupNumber to tmpMax do
   begin
     tmpPoke := GPokePile[GCanMoveAsGroupPileNumber].GetPoke(i);
-    if tmpPoke.Initiator then continue;
+    if tmpPoke.Initiator then
+      continue;
     if tmpPoke.CanMoveAsGroup then
     begin
       tmpPoke.Left := tmpPoke.Left + tmpMsg.WParam;

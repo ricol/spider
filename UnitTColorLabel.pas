@@ -49,16 +49,17 @@ type
 
   TColorLabel = class(TLabel)
   private
-    FGo: boolean;
+    FGo: Boolean;
     FMyThread: TMyThread;
-    procedure ProcessMessage_WM_MBUTTONDOWN(var tmpMsg: TWMMButtonDown); message WM_MBUTTONDOWN;
-    procedure SetGo(const Value: boolean);
+    procedure ProcessMessage_WM_MBUTTONDOWN(var tmpMsg: TWMMButtonDown);
+      message WM_MBUTTONDOWN;
+    procedure SetGo(const Value: Boolean);
   published
   public
     constructor Create(AOwner: TComponent); reintroduce;
     destructor Destroy(); override;
     procedure AdjustPlace();
-    property Go: boolean read FGo write SetGo;
+    property Go: Boolean read FGo write SetGo;
   end;
 
 implementation
@@ -71,8 +72,10 @@ var
 begin
   tmpParent := Self.Parent.Handle;
   GetWindowPlacement(tmpParent, tmpWindowPlaceMent);
-  tmpParentWidth := tmpWindowPlaceMent.rcNormalPosition.Right - tmpWindowPlaceMent.rcNormalPosition.Left;
-  tmpParentHeight := tmpWindowPlaceMent.rcNormalPosition.Bottom - tmpWindowPlaceMent.rcNormalPosition.Top - 100;
+  tmpParentWidth := tmpWindowPlaceMent.rcNormalPosition.Right -
+    tmpWindowPlaceMent.rcNormalPosition.Left;
+  tmpParentHeight := tmpWindowPlaceMent.rcNormalPosition.Bottom -
+    tmpWindowPlaceMent.rcNormalPosition.Top - 100;
   Self.Left := tmpParentWidth div 2 - Self.Width div 2;
   Self.Top := tmpParentHeight div 2 - Self.Height div 2;
 end;
@@ -96,13 +99,12 @@ end;
 destructor TColorLabel.Destroy;
 begin
   FMyThread.Terminate;
-//  FMyThread.WaitFor;//remember it can return only if thread is executing!
+  // FMyThread.WaitFor;//remember it can return only if thread is executing!
   FMyThread.Free;
   inherited;
 end;
 
-procedure TColorLabel.ProcessMessage_WM_MBUTTONDOWN(
-  var tmpMsg: TWMMButtonDown);
+procedure TColorLabel.ProcessMessage_WM_MBUTTONDOWN(var tmpMsg: TWMMButtonDown);
 var
   tmpS: string;
 begin
@@ -118,7 +120,7 @@ begin
   inherited;
 end;
 
-procedure TColorLabel.SetGo(const Value: boolean);
+procedure TColorLabel.SetGo(const Value: Boolean);
 begin
   if FGo <> Value then
   begin
@@ -126,7 +128,9 @@ begin
     if Value then
     begin
       FMyThread.Resume;
-    end else begin
+    end
+    else
+    begin
       FMyThread.Suspend;
     end;
   end;
@@ -150,7 +154,7 @@ procedure TMyThread.Execute;
 begin
   inherited;
   repeat
-    if Fnum = NUMRED then
+    if FNum = NUMRED then
     begin
       if FR = INCREASE then
       begin
@@ -158,17 +162,20 @@ begin
         if FRed >= 255 then
         begin
           FR := DECREASE;
-          Fnum := NUMBLUE;
+          FNum := NUMBLUE;
         end;
-      end else begin
+      end
+      else
+      begin
         dec(FRed, 5);
         if FRed <= 0 then
         begin
           FR := INCREASE;
-          Fnum := NUMBLUE;
+          FNum := NUMBLUE;
         end;
       end;
-    end else if Fnum = NUMGREEN then
+    end
+    else if FNum = NUMGREEN then
     begin
       if FG = INCREASE then
       begin
@@ -176,39 +183,46 @@ begin
         if FGreen >= 255 then
         begin
           FG := DECREASE;
-          Fnum := NUMRED;
+          FNum := NUMRED;
         end;
-      end else begin
+      end
+      else
+      begin
         dec(FGreen, 5);
         if FGreen <= 0 then
         begin
           FG := INCREASE;
-          Fnum := NUMRED;
+          FNum := NUMRED;
         end;
       end;
-    end else begin
+    end
+    else
+    begin
       if FB = INCREASE then
       begin
         inc(FBlue, 5);
         if FBlue >= 255 then
         begin
           FB := DECREASE;
-          Fnum := NUMGREEN;
+          FNum := NUMGREEN;
         end;
-      end else begin
+      end
+      else
+      begin
         dec(FBlue, 5);
         if FBlue <= 0 then
         begin
           FB := INCREASE;
-          Fnum := NUMGREEN;
+          FNum := NUMGREEN;
         end;
       end;
     end;
-//    FCriticalSection.Enter;
-//    TColorLabel(Self.FColorLabel).Font.Color := RGB(FRed, FGreen, FBlue);
+    // FCriticalSection.Enter;
+    // TColorLabel(Self.FColorLabel).Font.Color := RGB(FRed, FGreen, FBlue);
     Synchronize(SetColor);
-//    FCriticalSection.Leave;
-    if Self.Terminated then break;
+    // FCriticalSection.Leave;
+    if Self.Terminated then
+      break;
     Sleep(FSpeed);
   until false;
 end;

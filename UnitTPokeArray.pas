@@ -13,9 +13,10 @@ type
   TPokeNum = record
     x, y: integer;
   end;
-  TPokeArray = class                                          //this class is to generate random cards.
+
+  TPokeArray = class // this class is to generate random cards.
   private
-    FPokeArray: array[1..CARDNUMBER] of TPokeNum;
+    FPokeArray: array [1 .. CARDNUMBER] of TPokeNum;
     FIndex: integer;
   public
     constructor Create(tmpDifficulty: TDifficulty);
@@ -43,7 +44,9 @@ begin
         FPokeArray[k].y := 4;
         inc(k);
       end;
-  end else if tmpDifficulty = MEDIUM then begin
+  end
+  else if tmpDifficulty = MEDIUM then
+  begin
     for i := 1 to 4 do
       for j := 1 to 13 do
       begin
@@ -58,7 +61,9 @@ begin
         FPokeArray[k].y := 3;
         inc(k);
       end;
-  end else begin
+  end
+  else
+  begin
     for i := 1 to 8 do
       for j := 1 to 13 do
       begin
@@ -88,16 +93,18 @@ var
 begin
   Randomize;
   for i := 1 to RANDOMNUM do
-    SwapPokeNum(FPokeArray[Random(CARDNUMBER) + 1], FPokeArray[Random(CARDNUMBER) + 1]);
+    SwapPokeNum(FPokeArray[Random(CARDNUMBER) + 1],
+      FPokeArray[Random(CARDNUMBER) + 1]);
 end;
 
-procedure TPokeArray.SwapPokeNum(var tmpPokeNum1: TPokeNum; var tmpPokeNum2: TPokeNum);
+procedure TPokeArray.SwapPokeNum(var tmpPokeNum1: TPokeNum;
+  var tmpPokeNum2: TPokeNum);
 var
   tmpPokeNum: TPokeNum;
 begin
   tmpPokeNum := tmpPokeNum1;
   tmpPokeNum1 := tmpPokeNum2;
-  tmpPokeNUm2 := tmpPokeNum;
+  tmpPokeNum2 := tmpPokeNum;
 end;
 
 end.

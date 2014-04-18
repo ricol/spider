@@ -40,8 +40,10 @@ const
 type
   TDifficulty = (EASY, MEDIUM, HARD);
   TType = (MAIN, TEMP, RECYCLE);
+
   THint = record
-    SourcePileNumber, SourceNumber, SourceMaxIndexNumber, TargetPileNumber: integer;
+    SourcePileNumber, SourceNumber, SourceMaxIndexNumber,
+      TargetPileNumber: integer;
   end;
 
 var
@@ -50,7 +52,8 @@ var
   GTempStartX, GTempStartY, GTempLenX, GTempLenY: integer;
   GRecycleStartX, GRecycleStartY, GRecycleLenX, GRecycleLenY: integer;
   GSoundEffect, GAnimateEffect, GAutoSaveWhenExit, GNewDifficulty,
-  GAutoOpenLastGame, GShowMessageBeforeSave, GShowMessageOpenLastGame, GGameRestart: boolean;
+    GAutoOpenLastGame, GShowMessageBeforeSave, GShowMessageOpenLastGame,
+    GGameRestart: boolean;
 
 function CanMove(Up_i, Up_j, Down_i, Down_j: integer): boolean;
 procedure SoundEffect(tmpSound: string);

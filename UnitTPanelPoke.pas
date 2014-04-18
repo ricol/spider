@@ -3,7 +3,8 @@ unit UnitTPanelPoke;
 interface
 
 uses
-  Messages, Windows, SysUtils, Classes, Graphics, Controls, ExtCtrls, UnitCommon, MMSystem;
+  Messages, Windows, SysUtils, Classes, Graphics, Controls, ExtCtrls,
+  UnitCommon, MMSystem;
 
 type
   TPanelPoke = class(TImage)
@@ -35,11 +36,13 @@ type
   public
     destructor Destroy(); override;
     procedure Init(tmpX, tmpY: integer; tmpHandle: cardinal;
-    tmpPileNumber, tmpNumber: integer; tmpFlag: boolean; tmpHaveMoved: boolean;
-    tmpType: TTYpe; tmpPositiveNumber: integer; tmpParent: TComponent);
+      tmpPileNumber, tmpNumber: integer; tmpFlag: boolean;
+      tmpHaveMoved: boolean; tmpType: TType; tmpPositiveNumber: integer;
+      tmpParent: TComponent);
     procedure ShowPicture();
     procedure ShowMe();
-    procedure MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber: integer; tmpType: TTYpe);
+    procedure MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber: integer;
+      tmpType: TType);
     procedure Reverse(tmpFlag: boolean);
     procedure Dark(tmpFlag: boolean);
     property Handle: cardinal read FHandle write SetHandle;
@@ -47,17 +50,23 @@ type
     property Y: integer read FY write SetY;
     property CanDrag: boolean read FCanDrag write SetCanDrag;
     property Initiator: boolean read FInitiator write SetInitiator;
-    property CanMoveAsGroup: boolean read FCanMoveAsGroup write SetCanMoveAsGroup;
+    property CanMoveAsGroup: boolean read FCanMoveAsGroup
+      write SetCanMoveAsGroup;
     property Number: integer read FNumber write SetNumber;
     property PositiveFlag: boolean read FPositiveFlag write SetPositiveFlag;
     property FType: TType read FFType write SetFType;
-    property PositiveNumber: integer read FPositiveNumber write SetPositiveNumber;
+    property PositiveNumber: integer read FPositiveNumber
+      write SetPositiveNumber;
     property PileNumber: integer read FPileNumber write SetPileNumber;
     function Match(tmpParentPoke: TPanelPoke): boolean;
-    procedure Process_WM_LBUTTONDOWN(var tmpMsg: TWMLButtonDown); message WM_LBUTTONDOWN;
-    procedure Process_WM_LBUTTONUP(var tmpMsg: TWMLButtonUP); message WM_LBUTTONUP;
-    procedure Process_WM_MOUSEMOVE(var tmpMsg: TWMMouseMove); message WM_MOUSEMOVE;
-    procedure Process_WM_RBUTTONDOWN(var tmpMsg: TWMRButtonDown); message WM_RBUTTONDOWN;
+    procedure Process_WM_LBUTTONDOWN(var tmpMsg: TWMLButtonDown);
+      message WM_LBUTTONDOWN;
+    procedure Process_WM_LBUTTONUP(var tmpMsg: TWMLButtonUP);
+      message WM_LBUTTONUP;
+    procedure Process_WM_MOUSEMOVE(var tmpMsg: TWMMouseMove);
+      message WM_MOUSEMOVE;
+    procedure Process_WM_RBUTTONDOWN(var tmpMsg: TWMRButtonDown);
+      message WM_RBUTTONDOWN;
   end;
 
 implementation
@@ -70,7 +79,8 @@ begin
   begin
     with Self.Picture.Bitmap do
       PatBlt(Canvas.Handle, 0, 0, Width - 1, Height - 1, DSTINVERT);
-  end else
+  end
+  else
     Self.Picture.Bitmap := FbmpPositiveFace;
   Self.Refresh;
 end;
@@ -84,7 +94,7 @@ end;
 
 procedure TPanelPoke.Init(tmpX, tmpY: integer; tmpHandle: cardinal;
   tmpPileNumber, tmpNumber: integer; tmpFlag: boolean; tmpHaveMoved: boolean;
-  tmpType: TTYpe; tmpPositiveNumber: integer; tmpParent: TComponent);
+  tmpType: TType; tmpPositiveNumber: integer; tmpParent: TComponent);
 begin
   Parent := TWinControl(tmpParent);
   FCanDrag := false;
@@ -92,9 +102,10 @@ begin
   FbmpPositiveFace := TBitmap.Create;
   FPileNumber := tmpPileNumber;
   FNumber := tmpNumber;
-  Fx := tmpX;
-  Fy := tmpY;
-  FbmpPositiveFace.LoadFromResourceName(hInstance, 'BMPPOKE' + Format('%d_%d', [tmpX, tmpY]));
+  FX := tmpX;
+  FY := tmpY;
+  FbmpPositiveFace.LoadFromResourceName(hInstance, 'BMPPOKE' + Format('%d_%d',
+    [tmpX, tmpY]));
   FbmpNegativeFace := TBitmap.Create;
   FbmpNegativeFace.LoadFromResourceName(hInstance, 'BMPCARDBACK');
   FPositiveFlag := tmpFlag;
@@ -106,22 +117,29 @@ end;
 function TPanelPoke.Match(tmpParentPoke: TPanelPoke): boolean;
 begin
   result := false;
-  if Self.Fx <> tmpParentPoke.Fx - 1 then exit;
+  if Self.FX <> tmpParentPoke.FX - 1 then
+    exit;
   result := true;
 end;
 
-procedure TPanelPoke.MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber: integer; tmpType: TTYpe);
+procedure TPanelPoke.MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber
+  : integer; tmpType: TType);
 var
-  tmpTargetX, tmpTargetY, tmpOldX, tmpOldY, tmpX, tmpY, i, tmpIncX, tmpIncY: integer;
+  tmpTargetX, tmpTargetY, tmpOldX, tmpOldY, tmpX, tmpY, i, tmpIncX,
+    tmpIncY: integer;
 begin
-  if not GAnimateEffect then exit;
+  if not GAnimateEffect then
+    exit;
   tmpTargetX := 0;
   tmpTargetY := 0;
   if tmpType = MAIN then
   begin
     tmpTargetX := (tmpTargetPile - 1) * GMainLenX + GMainStartX;
-    tmpTargetY := 2 * tmpPositiveNumber * GMainLenY + (tmpTargetNumber - 1) *  2 * GMainLenY + GMainStartY - tmpTargetNumber * GMainLenY - tmpPositiveNumber * GMainLenY;
-  end else if tmpType = RECYCLE then
+    tmpTargetY := 2 * tmpPositiveNumber * GMainLenY + (tmpTargetNumber - 1) * 2
+      * GMainLenY + GMainStartY - tmpTargetNumber * GMainLenY -
+      tmpPositiveNumber * GMainLenY;
+  end
+  else if tmpType = RECYCLE then
   begin
     tmpTargetX := (tmpTargetPile - 1) * GRecycleLenX + GRecycleStartX;
     tmpTargetY := GRecycleStartY;
@@ -267,29 +285,30 @@ procedure TPanelPoke.ShowMe;
 begin
   case FType of
     MAIN:
-    begin
-      if FPositiveFlag then
-        Top := 2 * FPositiveNumber * GMainLenY + (FNumber - 1) *  2 * GMainLenY + GMainStartY - FNumber * GMainLenY - FPositiveNumber * GMainLenY
-      else
-      Top := (FNumber - 1) * GMainLenY + GMainStartY;
-      Left := (FPileNumber - 1) * GMainLenX + GMainStartX;
-      Width := POKEWIDTH;
-      Height := POKEHEIGHT;
-    end;
+      begin
+        if FPositiveFlag then
+          Top := 2 * FPositiveNumber * GMainLenY + (FNumber - 1) * 2 * GMainLenY
+            + GMainStartY - FNumber * GMainLenY - FPositiveNumber * GMainLenY
+        else
+          Top := (FNumber - 1) * GMainLenY + GMainStartY;
+        Left := (FPileNumber - 1) * GMainLenX + GMainStartX;
+        Width := POKEWIDTH;
+        Height := POKEHEIGHT;
+      end;
     TEMP:
-    begin
-      Left := (FPileNumber - 1) * GTempLenX + GTempStartX;
-      Top := GTempStartY;
-      Width := POKEWIDTH;
-      Height := POKEHEIGHT;
-    end;
+      begin
+        Left := (FPileNumber - 1) * GTempLenX + GTempStartX;
+        Top := GTempStartY;
+        Width := POKEWIDTH;
+        Height := POKEHEIGHT;
+      end;
     RECYCLE:
-    begin
-      Left := (FPileNumber - 1) * GRecycleLenX + GRecycleStartX;
-      Top := GRecycleStartY;
-      Width := POKEWIDTH;
-      Height := POKEHEIGHT;
-    end;
+      begin
+        Left := (FPileNumber - 1) * GRecycleLenX + GRecycleStartX;
+        Top := GRecycleStartY;
+        Width := POKEWIDTH;
+        Height := POKEHEIGHT;
+      end;
   end;
   ShowPicture;
 end;
