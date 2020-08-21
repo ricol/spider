@@ -19,10 +19,10 @@ type
     FPokeArray: array [1 .. CARDNUMBER] of TPokeNum;
     FIndex: integer;
   public
-    constructor Create(tmpDifficulty: TDifficulty);
+    constructor Create(diff: TDifficulty);
     destructor Destroy(); override;
     function GetPoke(): TPokeNum;
-    procedure SwapPokeNum(var tmpPokeNum1: TPokeNum; var tmpPokeNum2: TPokeNum);
+    procedure SwapPokeNum(var p1: TPokeNum; var p2: TPokeNum);
     procedure RandomData();
   end;
 
@@ -30,12 +30,12 @@ implementation
 
 { TPokeArray }
 
-constructor TPokeArray.Create(tmpDifficulty: TDifficulty);
+constructor TPokeArray.Create(diff: TDifficulty);
 var
   i, j, k: integer;
 begin
   k := 1;
-  if tmpDifficulty = EASY then
+  if diff = EASY then
   begin
     for i := 1 to 8 do
       for j := 1 to 13 do
@@ -45,7 +45,7 @@ begin
         inc(k);
       end;
   end
-  else if tmpDifficulty = MEDIUM then
+  else if diff = MEDIUM then
   begin
     for i := 1 to 4 do
       for j := 1 to 13 do
@@ -97,14 +97,14 @@ begin
       FPokeArray[Random(CARDNUMBER) + 1]);
 end;
 
-procedure TPokeArray.SwapPokeNum(var tmpPokeNum1: TPokeNum;
-  var tmpPokeNum2: TPokeNum);
+procedure TPokeArray.SwapPokeNum(var p1: TPokeNum;
+  var p2: TPokeNum);
 var
-  tmpPokeNum: TPokeNum;
+  tmp: TPokeNum;
 begin
-  tmpPokeNum := tmpPokeNum1;
-  tmpPokeNum1 := tmpPokeNum2;
-  tmpPokeNum2 := tmpPokeNum;
+  tmp := p1;
+  p1 := p2;
+  p2 := tmp;
 end;
 
 end.

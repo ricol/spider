@@ -21,12 +21,12 @@ type
   public
     constructor Create();
     destructor Destroy(); override;
-    function GetPoke(tmpIndex: integer): TPanelPoke;
+    function GetPoke(index: integer): TPanelPoke;
     function IsEmpty(): boolean;
     procedure CaculatePositiveNumber();
     procedure Show();
-    procedure AddPoke(tmpPoke: TPanelPoke);
-    procedure RemovePoke(tmpPoke: TPanelPoke);
+    procedure AddPoke(poker: TPanelPoke);
+    procedure RemovePoke(poker: TPanelPoke);
     property FIndex: integer read FFIndex write SetFIndex;
     property PileNumber: integer read FPileNumber write SetPileNumber;
     property Handle: cardinal read FHandle write SetHandle;
@@ -37,12 +37,12 @@ implementation
 
 { TPokePile }
 
-procedure TPokePile.AddPoke(tmpPoke: TPanelPoke);
+procedure TPokePile.AddPoke(poker: TPanelPoke);
 begin
   if FType = MAIN then
   begin
     inc(FFIndex);
-    FPoke[FFIndex] := tmpPoke;
+    FPoke[FFIndex] := poker;
     FPoke[FFIndex].PileNumber := FPileNumber;
     FPoke[FFIndex].Number := FIndex;
     FPoke[FFIndex].FType := MAIN;
@@ -54,7 +54,7 @@ begin
   else if FType = TEMP then
   begin
     inc(FFIndex);
-    FPoke[FFIndex] := tmpPoke;
+    FPoke[FFIndex] := poker;
     FPoke[FFIndex].PileNumber := FPileNumber;
     FPoke[FFIndex].Number := FIndex;
     FPoke[FFIndex].BringToFront;
@@ -62,7 +62,7 @@ begin
   else if FType = RECYCLE then
   begin
     inc(FFIndex);
-    FPoke[FFIndex] := tmpPoke;
+    FPoke[FFIndex] := poker;
     FPoke[FFIndex].PileNumber := FPileNumber;
     FPoke[FFIndex].Number := FIndex;
     FPoke[FFIndex].FType := RECYCLE;
@@ -110,12 +110,12 @@ begin
   inherited;
 end;
 
-function TPokePile.GetPoke(tmpIndex: integer): TPanelPoke;
+function TPokePile.GetPoke(index: integer): TPanelPoke;
 begin
-  if (tmpIndex <= 0) or (tmpIndex > FIndex) then
+  if (index <= 0) or (index > FIndex) then
     result := nil
   else
-    result := FPoke[tmpIndex];
+    result := FPoke[index];
 end;
 
 function TPokePile.IsEmpty: boolean;
@@ -125,7 +125,7 @@ begin
     result := true;
 end;
 
-procedure TPokePile.RemovePoke(tmpPoke: TPanelPoke);
+procedure TPokePile.RemovePoke(poker: TPanelPoke);
 begin
   if FType = MAIN then
   begin
@@ -138,7 +138,7 @@ begin
   begin
     FPoke[FFIndex] := nil;
     dec(FFIndex);
-    tmpPoke.Hide;
+    poker.Hide;
   end;
 end;
 

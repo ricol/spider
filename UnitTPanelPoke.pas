@@ -35,16 +35,16 @@ type
     procedure SetY(const Value: integer);
   public
     destructor Destroy(); override;
-    procedure Init(tmpX, tmpY: integer; tmpHandle: cardinal;
-      tmpPileNumber, tmpNumber: integer; tmpFlag: boolean;
-      tmpHaveMoved: boolean; tmpType: TType; tmpPositiveNumber: integer;
-      tmpParent: TComponent);
+    procedure Init(x, y: integer; handle: cardinal;
+      pileNum, num: integer; flag: boolean;
+      bHaveMoved: boolean; _type: TType; posNum: integer;
+      parentComponent: TComponent);
     procedure ShowPicture();
     procedure ShowMe();
-    procedure MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber: integer;
-      tmpType: TType);
+    procedure MoveTo(targetPile, targetNum, posNum: integer;
+      _type: TType);
     procedure Reverse(tmpFlag: boolean);
-    procedure Dark(tmpFlag: boolean);
+    procedure Dark(flag: boolean);
     property Handle: cardinal read FHandle write SetHandle;
     property X: integer read FX write SetX;
     property Y: integer read FY write SetY;
@@ -58,7 +58,7 @@ type
     property PositiveNumber: integer read FPositiveNumber
       write SetPositiveNumber;
     property PileNumber: integer read FPileNumber write SetPileNumber;
-    function Match(tmpParentPoke: TPanelPoke): boolean;
+    function Match(parentPoker: TPanelPoke): boolean;
     procedure Process_WM_LBUTTONDOWN(var tmpMsg: TWMLButtonDown);
       message WM_LBUTTONDOWN;
     procedure Process_WM_LBUTTONUP(var tmpMsg: TWMLButtonUP);
@@ -73,9 +73,9 @@ implementation
 
 { TUnitTPanelPoke }
 
-procedure TPanelPoke.Dark(tmpFlag: boolean);
+procedure TPanelPoke.Dark(flag: boolean);
 begin
-  if tmpFlag then
+  if flag then
   begin
     with Self.Picture.Bitmap do
       PatBlt(Canvas.Handle, 0, 0, Width - 1, Height - 1, DSTINVERT);
@@ -92,76 +92,76 @@ begin
   inherited;
 end;
 
-procedure TPanelPoke.Init(tmpX, tmpY: integer; tmpHandle: cardinal;
-  tmpPileNumber, tmpNumber: integer; tmpFlag: boolean; tmpHaveMoved: boolean;
-  tmpType: TType; tmpPositiveNumber: integer; tmpParent: TComponent);
+procedure TPanelPoke.Init(x, y: integer; handle: cardinal;
+  pileNum, num: integer; flag: boolean; bHaveMoved: boolean;
+  _type: TType; posNum: integer; parentComponent: TComponent);
 begin
-  Parent := TWinControl(tmpParent);
+  Parent := TWinControl(parentComponent);
   FCanDrag := false;
-  FHandle := tmpHandle;
+  FHandle := handle;
   FbmpPositiveFace := TBitmap.Create;
-  FPileNumber := tmpPileNumber;
-  FNumber := tmpNumber;
-  FX := tmpX;
-  FY := tmpY;
+  FPileNumber := pileNum;
+  FNumber := num;
+  FX := x;
+  FY := y;
   FbmpPositiveFace.LoadFromResourceName(hInstance, 'BMPPOKE' + Format('%d_%d',
-    [tmpX, tmpY]));
+    [x, y]));
   FbmpNegativeFace := TBitmap.Create;
   FbmpNegativeFace.LoadFromResourceName(hInstance, 'BMPCARDBACK');
-  FPositiveFlag := tmpFlag;
-  FType := tmpType;
+  FPositiveFlag := flag;
+  FType := _type;
   FInitiator := false;
   FCanMoveAsGroup := false;
 end;
 
-function TPanelPoke.Match(tmpParentPoke: TPanelPoke): boolean;
+function TPanelPoke.Match(parentPoker: TPanelPoke): boolean;
 begin
   result := false;
-  if Self.FX <> tmpParentPoke.FX - 1 then
+  if Self.FX <> parentPoker.FX - 1 then
     exit;
   result := true;
 end;
 
-procedure TPanelPoke.MoveTo(tmpTargetPile, tmpTargetNumber, tmpPositiveNumber
-  : integer; tmpType: TType);
+procedure TPanelPoke.MoveTo(targetPile, targetNum, posNum
+  : integer; _type: TType);
 var
-  tmpTargetX, tmpTargetY, tmpOldX, tmpOldY, tmpX, tmpY, i, tmpIncX,
-    tmpIncY: integer;
+  targetX, targetY, oldX, oldY, x, y, i, incX,
+    incY: integer;
 begin
   if not GAnimateEffect then
     exit;
-  tmpTargetX := 0;
-  tmpTargetY := 0;
-  if tmpType = MAIN then
+  targetX := 0;
+  targetY := 0;
+  if _type = MAIN then
   begin
-    tmpTargetX := (tmpTargetPile - 1) * GMainLenX + GMainStartX;
-    tmpTargetY := 2 * tmpPositiveNumber * GMainLenY + (tmpTargetNumber - 1) * 2
-      * GMainLenY + GMainStartY - tmpTargetNumber * GMainLenY -
-      tmpPositiveNumber * GMainLenY;
+    targetX := (targetPile - 1) * GMainLenX + GMainStartX;
+    targetY := 2 * posNum * GMainLenY + (targetNum - 1) * 2
+      * GMainLenY + GMainStartY - targetNum * GMainLenY -
+      posNum * GMainLenY;
   end
-  else if tmpType = RECYCLE then
+  else if _type = RECYCLE then
   begin
-    tmpTargetX := (tmpTargetPile - 1) * GRecycleLenX + GRecycleStartX;
-    tmpTargetY := GRecycleStartY;
+    targetX := (targetPile - 1) * GRecycleLenX + GRecycleStartX;
+    targetY := GRecycleStartY;
   end;
-  tmpOldX := Self.Left;
-  tmpOldY := Self.Top;
-  tmpX := tmpOldX;
-  tmpY := tmpOldY;
-  tmpIncX := (tmpTargetX - tmpOldX) div TIMES;
-  tmpIncY := (tmpTargetY - tmpOldY) div TIMES;
+  oldX := Self.Left;
+  oldY := Self.Top;
+  x := oldX;
+  y := oldY;
+  incX := (targetX - oldX) div TIMES;
+  incY := (targetY - oldY) div TIMES;
   Self.BringToFront;
   for i := 1 to TIMES - 1 do
   begin
-    tmpX := tmpX + tmpIncX;
-    tmpY := tmpY + tmpIncY;
-    Self.Left := tmpX;
-    Self.Top := tmpY;
+    x := x + incX;
+    y := y + incY;
+    Self.Left := x;
+    Self.Top := y;
     Self.Refresh;
     Sleep(10);
   end;
-  Self.Left := tmpTargetX;
-  Self.Top := tmpTargetY;
+  Self.Left := targetX;
+  Self.Top := targetY;
   Self.Refresh;
 end;
 

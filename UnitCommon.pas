@@ -55,30 +55,30 @@ var
     GAutoOpenLastGame, GShowMessageBeforeSave, GShowMessageOpenLastGame,
     GGameRestart: boolean;
 
-function CanMove(Up_i, Up_j, Down_i, Down_j: integer): boolean;
-procedure SoundEffect(tmpSound: string);
+function CanMove(upI, upJ, downI, downJ: integer): boolean;
+procedure SoundEffect(sound: string);
 
 implementation
 
-function CanMove(Up_i, Up_j, Down_i, Down_j: integer): boolean;
+function CanMove(upI, upJ, downI, downJ: integer): boolean;
 begin
   result := true;
-  if Up_j <> Down_j then
+  if upJ <> downJ then
   begin
     result := false;
     exit;
   end;
-  if Up_i <> Down_i + 1 then
+  if upI <> downI + 1 then
   begin
     result := false;
     exit;
   end;
 end;
 
-procedure SoundEffect(tmpSound: string);
+procedure SoundEffect(sound: string);
 begin
   if GSoundEffect then
-    PlaySound(PChar(tmpSound), hInstance, SND_ASYNC or SND_RESOURCE);
+    PlaySound(PChar(sound), hInstance, SND_ASYNC or SND_RESOURCE);
 end;
 
 end.
