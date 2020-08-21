@@ -2,17 +2,17 @@ program Spider_XE5;
 
 uses
   Forms,
-  UnitMain in 'UnitMain.pas' {FormMain},
-  UnitAbout in 'UnitAbout.pas' {AboutBox},
-  UnitDifficulty in 'UnitDifficulty.pas' {FormDifficulty},
-  UnitScore in 'UnitScore.pas' {FormScore},
-  UnitOption in 'UnitOption.pas' {FormOption},
-  UnitCommon in 'UnitCommon.pas',
-  UnitTPokeArray in 'UnitTPokeArray.pas',
-  UnitTPanelPoke in 'UnitTPanelPoke.pas',
-  UnitTPokePile in 'UnitTPokePile.pas',
-  UnitGameOver in 'UnitGameOver.pas' {FormGameOver},
-  UnitTColorLabel in 'UnitTColorLabel.pas';
+  fMain in 'fMain.pas' {FormMain},
+  About in 'About.pas' {AboutBox},
+  Difficulty in 'Difficulty.pas' {FormDifficulty},
+  Score in 'Score.pas' {FormScore},
+  Option in 'Option.pas' {FormOption},
+  Common in 'Common.pas',
+  PokerArray in 'PokerArray.pas',
+  PanelPoker in 'PanelPoker.pas',
+  PokerPile in 'PokerPile.pas',
+  GameOver in 'GameOver.pas' {FormGameOver},
+  ColorLabel in 'ColorLabel.pas';
 
 {$R *.res}
 {$R MyResource.res}

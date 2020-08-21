@@ -1,4 +1,4 @@
-unit UnitDifficulty;
+unit Difficulty;
 
 interface
 
@@ -35,7 +35,7 @@ var
 
 implementation
 
-uses UnitCommon;
+uses Common;
 
 {$R *.dfm}
 

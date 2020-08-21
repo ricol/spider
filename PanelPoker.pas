@@ -1,10 +1,10 @@
-unit UnitTPanelPoke;
+unit PanelPoker;
 
 interface
 
 uses
   Messages, Windows, SysUtils, Classes, Graphics, Controls, ExtCtrls,
-  UnitCommon, MMSystem;
+  Common, MMSystem;
 
 type
   TPanelPoke = class(TImage)

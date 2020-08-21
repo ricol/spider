@@ -1,4 +1,4 @@
-unit UnitGameOver;
+unit GameOver;
 
 interface
 
@@ -26,7 +26,7 @@ var
 
 implementation
 
-uses UnitCommon;
+uses Common;
 
 {$R *.dfm}
 

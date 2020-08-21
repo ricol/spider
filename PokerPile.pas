@@ -1,9 +1,9 @@
-unit UnitTPokePile;
+unit PokerPile;
 
 interface
 
 uses
-  Messages, Windows, SysUtils, Graphics, UnitCommon, UnitTPanelPoke;
+  Messages, Windows, SysUtils, Graphics, Common, PanelPoker;
 
 type
   // this class represents the card pile including MAIN, TEMP and RECYCLE cards.

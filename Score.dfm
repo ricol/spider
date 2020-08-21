@@ -25,6 +25,10 @@ object FormScore: TFormScore
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = #21021#32423
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         Left = 12
         Top = 0

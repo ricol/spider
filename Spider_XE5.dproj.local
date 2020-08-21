@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/08/22 02:56:43.000.156,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitAbout.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\About.pas</Transaction>
+    <Transaction>2020/08/22 02:56:43.000.156,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitAbout.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\About.dfm</Transaction>
+    <Transaction>2020/08/22 02:56:47.000.222,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitCommon.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Common.pas</Transaction>
+    <Transaction>2020/08/22 02:56:52.000.239,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitDifficulty.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Difficulty.dfm</Transaction>
+    <Transaction>2020/08/22 02:56:52.000.239,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitDifficulty.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Difficulty.pas</Transaction>
+    <Transaction>2020/08/22 02:56:56.000.966,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitGameOver.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\GameOver.dfm</Transaction>
+    <Transaction>2020/08/22 02:56:56.000.966,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitGameOver.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\GameOver.pas</Transaction>
+    <Transaction>2020/08/22 02:57:00.000.401,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitMain.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Main.dfm</Transaction>
+    <Transaction>2020/08/22 02:57:00.000.401,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitMain.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Main.pas</Transaction>
+    <Transaction>2020/08/22 02:57:04.000.487,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitOption.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Option.pas</Transaction>
+    <Transaction>2020/08/22 02:57:04.000.487,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitOption.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Option.dfm</Transaction>
+    <Transaction>2020/08/22 02:57:08.000.412,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitScore.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Score.dfm</Transaction>
+    <Transaction>2020/08/22 02:57:08.000.412,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitScore.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Score.pas</Transaction>
+    <Transaction>2020/08/22 02:57:13.000.289,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitTColorLabel.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\ColorLabel.pas</Transaction>
+    <Transaction>2020/08/22 02:57:18.000.617,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitTPanelPoke.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\PanelPoker.pas</Transaction>
+    <Transaction>2020/08/22 02:57:23.000.735,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitTPokeArray.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\PokerArray.pas</Transaction>
+    <Transaction>2020/08/22 02:57:29.000.783,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\UnitTPokePile.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\PokerPile.pas</Transaction>
+    <Transaction>2020/08/22 02:59:02.000.420,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Main.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\fMain.pas</Transaction>
+    <Transaction>2020/08/22 02:59:02.000.420,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\Main.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\fMain.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,9 +1,9 @@
-unit UnitTPokeArray;
+unit PokerArray;
 
 interface
 
 uses
-  Windows, SysUtils, UnitCommon;
+  Windows, SysUtils, Common;
 
 const
   CARDNUMBER = 104;

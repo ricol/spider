@@ -1,4 +1,4 @@
-unit UnitMain;
+unit fMain;
 
 {
   CONTACT: WANGXINGHE1983@GMAIL.COM
@@ -9,7 +9,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, ExtCtrls, StdCtrls, MMSystem,
-  UnitCommon, UnitTPokePile, UnitTPokeArray, UnitTPanelPoke;
+  Common, PokerPile, PokerArray, PanelPoker;
 
 type
   TFormMain = class(TForm)
@@ -82,8 +82,8 @@ var
 
 implementation
 
-uses UnitAbout, UnitDifficulty, UnitScore, UnitOption, UnitGameOver,
-  UnitTColorLabel;
+uses About, Difficulty, Score, Option, GameOver,
+  ColorLabel;
 
 {$R *.dfm}
 
