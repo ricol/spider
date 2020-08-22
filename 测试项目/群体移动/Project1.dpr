@@ -2,8 +2,9 @@ program Project1;
 
 uses
   Forms,
-  UnitMain in 'UnitMain.pas' {Form1},
-  UnitTMyPicture in 'UnitTMyPicture.pas';
+  Main in 'Main.pas' {Form1},
+  MyPicture in 'MyPicture.pas',
+  Common in 'Common.pas';
 
 {$R *.res}
 

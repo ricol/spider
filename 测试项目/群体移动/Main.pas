@@ -1,10 +1,10 @@
-unit UnitMain;
+unit Main;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, UnitCommon, UnitTMyPicture;
+  Dialogs, ExtCtrls, StdCtrls, Common, MyPicture;
 
 type
   TForm1 = class(TForm)
@@ -17,9 +17,9 @@ type
     procedure CheckBox1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
   private
-    procedure Process_WM_BEGINMOVE(var tmpMsg: TMessage); message WM_BEGINMOVE;
-    procedure Process_WM_MOVING(var tmpMsg: TMessage); message WM_MOVING;
-    procedure Process_WM_ENDMOVE(var tmpMsg: TMessage); message WM_ENDMOVE;
+    procedure Process_WM_BEGINMOVE(var msg: TMessage); message WM_BEGINMOVE;
+    procedure Process_WM_MOVING(var msg: TMessage); message WM_MOVING;
+    procedure Process_WM_ENDMOVE(var msg: TMessage); message WM_ENDMOVE;
     { Private declarations }
   public
     { Public declarations }
@@ -88,25 +88,25 @@ begin
   GMoveAsGroup := not GMoveAsGroup;
 end;
 
-procedure TForm1.Process_WM_BEGINMOVE(var tmpMsg: TMessage);
+procedure TForm1.Process_WM_BEGINMOVE(var msg: TMessage);
 begin
   inherited;
 end;
 
-procedure TForm1.Process_WM_ENDMOVE(var tmpMsg: TMessage);
+procedure TForm1.Process_WM_ENDMOVE(var msg: TMessage);
 begin
   inherited;
 end;
 
-procedure TForm1.Process_WM_MOVING(var tmpMsg: TMessage);
+procedure TForm1.Process_WM_MOVING(var msg: TMessage);
 var
   i: Integer;
 begin
   for i := 1 to 3 do
   begin
     if GPicture[i].Initiator then continue;
-    GPicture[i].Left := GPicture[i].Left + tmpMsg.WParam;
-    GPicture[i].Top := GPicture[i].Top + tmpMsg.LParam;
+    GPicture[i].Left := GPicture[i].Left + msg.WParam;
+    GPicture[i].Top := GPicture[i].Top + msg.LParam;
   end;
   inherited;
 end;

@@ -3,7 +3,7 @@ program Project1;
 uses
   Forms,
   Unit1 in 'Unit1.pas' {Form1},
-  UnitTColorLabel in 'UnitTColorLabel.pas';
+  ColorLabel in 'ColorLabel.pas';
 
 {$R *.res}
 

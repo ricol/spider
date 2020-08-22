@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2010-04-19 17:54:27.062.pas,D:\文档\RAD Studio\Projects\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas</Transaction>
-    <Transaction>2010-04-19 17:54:27.062.dfm,D:\文档\RAD Studio\Projects\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm</Transaction>
-    <Transaction>2010-04-19 17:54:28.968.dproj,D:\文档\RAD Studio\Projects\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj</Transaction>
-    <Transaction>2010-04-20 00:05:19.984.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Unit1.pas</Transaction>
-    <Transaction>2010-04-20 00:05:19.984.dfm,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Unit1.dfm</Transaction>
-    <Transaction>2010-04-20 00:05:26.750.dproj,D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Project1.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Unit1.dfm</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.dfm</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Delphi\Temp\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Project1.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\Temp\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

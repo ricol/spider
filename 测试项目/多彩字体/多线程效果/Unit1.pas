@@ -23,7 +23,7 @@ var
 
 implementation
 
-uses UnitTColorLabel;
+uses ColorLabel;
 
 {$R *.dfm}
 

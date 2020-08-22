@@ -1,4 +1,4 @@
-unit UnitTColorLabel;
+unit ColorLabel;
 
 interface
 
@@ -51,7 +51,7 @@ type
   private
     FGo: boolean;
     FMyThread: TMyThread;
-    procedure ProcessMessage_WM_MBUTTONDOWN(var tmpMsg: TWMMButtonDown); message WM_MBUTTONDOWN;
+    procedure ProcessMessage_WM_MBUTTONDOWN(var msg: TWMMButtonDown); message WM_MBUTTONDOWN;
     procedure SetGo(const Value: boolean);
   published
   public
@@ -65,16 +65,16 @@ implementation
 
 procedure TColorLabel.AdjustPlace;
 var
-  tmpParent: cardinal;
-  tmpWindowPlaceMent: WINDOWPLACEMENT;
-  tmpParentWidth, tmpParentHeight: integer;
+  parentHandle: cardinal;
+  winPlaceMent: WINDOWPLACEMENT;
+  parentWidth, parentHeight: integer;
 begin
-  tmpParent := Self.Parent.Handle;
-  GetWindowPlacement(tmpParent, tmpWindowPlaceMent);
-  tmpParentWidth := tmpWindowPlaceMent.rcNormalPosition.Right - tmpWindowPlaceMent.rcNormalPosition.Left;
-  tmpParentHeight := tmpWindowPlaceMent.rcNormalPosition.Bottom - tmpWindowPlaceMent.rcNormalPosition.Top - 100;
-  Self.Left := tmpParentWidth div 2 - Self.Width div 2;
-  Self.Top := tmpParentHeight div 2 - Self.Height div 2;
+  parentHandle := Self.Parent.Handle;
+  GetWindowPlacement(parentHandle, winPlaceMent);
+  parentWidth := winPlaceMent.rcNormalPosition.Right - winPlaceMent.rcNormalPosition.Left;
+  parentHeight := winPlaceMent.rcNormalPosition.Bottom - winPlaceMent.rcNormalPosition.Top - 100;
+  Self.Left := parentWidth div 2 - Self.Width div 2;
+  Self.Top := parentHeight div 2 - Self.Height div 2;
 end;
 
 constructor TColorLabel.Create(AOwner: TComponent);
@@ -102,17 +102,17 @@ begin
 end;
 
 procedure TColorLabel.ProcessMessage_WM_MBUTTONDOWN(
-  var tmpMsg: TWMMButtonDown);
+  var msg: TWMMButtonDown);
 var
-  tmpS: string;
+  s: string;
 begin
-  tmpS := Self.Caption;
-  if tmpMsg.Msg = WM_MBUTTONDOWN then
+  s := Self.Caption;
+  if msg.Msg = WM_MBUTTONDOWN then
   begin
     Beep;
-    tmpS := InputBox('输入', '请输入想要显示的信息：', tmpS);
-    if tmpS <> '' then
-      Self.Caption := tmpS;
+    s := InputBox('输入', '请输入想要显示的信息：', s);
+    if s <> '' then
+      Self.Caption := s;
     AdjustPlace;
   end;
   inherited;
