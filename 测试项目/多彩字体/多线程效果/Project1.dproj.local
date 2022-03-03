@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Project1.dproj</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Unit1.pas</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Unit1.dfm</Transaction>
-    <Transaction>2020/08/22 16:17:37.000.494,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\测试项目\多彩字体\多线程效果\UnitTColorLabel.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\测试项目\多彩字体\多线程效果\ColorLabel.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Unit1.dfm=D:\文档\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Project1.dproj=D:\文档\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\蜘蛛纸牌\测试项目\多彩字体\多线程效果\Unit1.pas=D:\文档\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/08/22 16:17:37.000.494,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\测试项目\多彩字体\多线程效果\ColorLabel.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Spider\测试项目\多彩字体\多线程效果\UnitTColorLabel.pas</Transaction>
   </Transactions>
 </BorlandProject>
