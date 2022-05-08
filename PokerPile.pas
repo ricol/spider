@@ -43,30 +43,39 @@ begin
   begin
     inc(FFIndex);
     FPoke[FFIndex] := poker;
-    FPoke[FFIndex].PileNumber := FPileNumber;
-    FPoke[FFIndex].Number := FIndex;
-    FPoke[FFIndex].FType := MAIN;
-    FPoke[FFIndex].Initiator := false;
-    FPoke[FFIndex].PositiveNumber := 0;
-    FPoke[FFIndex].CanMoveAsGroup := false;
-    FPoke[FFIndex].BringToFront;
+    with FPoke[FFIndex] do
+    begin
+      PileNumber := FPileNumber;
+      Number := FIndex;
+      FType := MAIN;
+      Initiator := false;
+      PositiveNumber := 0;
+      CanMoveAsGroup := false;
+      BringToFront;
+    end;
   end
   else if FType = TEMP then
   begin
     inc(FFIndex);
     FPoke[FFIndex] := poker;
-    FPoke[FFIndex].PileNumber := FPileNumber;
-    FPoke[FFIndex].Number := FIndex;
-    FPoke[FFIndex].BringToFront;
+    with FPoke[FFIndex] do
+    begin
+      PileNumber := FPileNumber;
+      Number := FIndex;
+      BringToFront;
+    end;
   end
   else if FType = RECYCLE then
   begin
     inc(FFIndex);
     FPoke[FFIndex] := poker;
-    FPoke[FFIndex].PileNumber := FPileNumber;
-    FPoke[FFIndex].Number := FIndex;
-    FPoke[FFIndex].FType := RECYCLE;
-    FPoke[FFIndex].BringToFront;
+    with FPoke[FFIndex] do
+    begin
+      PileNumber := FPileNumber;
+      Number := FIndex;
+      FType := RECYCLE;
+      BringToFront;
+    end;
   end;
 end;
 
